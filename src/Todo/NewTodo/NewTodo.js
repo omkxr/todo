@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TimePicker from 'react-time-picker';
 
 const NewTodo = (props) => {
 
@@ -9,25 +10,26 @@ const NewTodo = (props) => {
   const listChangeHandler = (e) => {
     setlist(e.target.value);
   }
-  const timeChangeHandler = (e) => {
-    settime(e.target.value);
-  }
+  // const timeChangeHandler = (e) => {
+  //   settime(e.target.value);
+  // }
   const dateChangeHandler = (e) => {
     setdate(e.target.value);
   }
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     const todoData = {
-      list: list,
-      time: time,
-      date: date
+      todolist: list,
+      todotime: time,
+      date: new Date(date),
     };
     console.log(todoData);
+    props.onSave(todoData);
     setlist('');
     settime('');
     setdate('');
-    props.onsavelist(todoData);
   }
 
   return (
@@ -40,7 +42,7 @@ const NewTodo = (props) => {
           </div>
           <div>
             <label className="font-bold mb-1 block">Time</label>
-            <input onChange={timeChangeHandler} value={time} className="p-1 rounded-md border-solid border-2 border-stone-500 w-80 max-w-full" type="text" min="0.01" step="0.01" />
+            <TimePicker onChange={settime} value={time} className="p-1 rounded-md border-solid border-2 bg-white border-stone-500 w-80 max-w-full" />
           </div>
           <div>
             <label className="font-bold mb-1 block">Date</label>

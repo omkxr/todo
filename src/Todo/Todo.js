@@ -15,8 +15,13 @@ const Todo = (props) => {
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
       />
-      {props.todo.map((todo) => (
-        <TodoItem date={todo.date} list={todo.todolist} time={todo.todotime} />
+      {props.todo.map((todo, index) => (
+        <TodoItem
+        key={index} 
+        date={todo.date} 
+        list={todo.todolist} 
+        time={todo.todotime} 
+        />
       ))}
     </div>
   );
